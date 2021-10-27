@@ -1,11 +1,13 @@
 <template>
   <section>
-    <div>
-      <h2 class="time">
+    <div class="time">
+      <h2>
         {{ hours | padZero }} : {{ minutes | padZero }} : {{ seconds | padZero }} :
-        {{ hSeconds | padDoubleZero }}
+        {{ hSeconds | padZero }}
       </h2>
+    </div>
 
+    <div class="buttons">
       <button v-if="!timerStarted" class="btn" @click="startTimer">Start</button>
       <button v-else class="btn" @click="stopTimer">Stop</button>
     </div>
@@ -28,12 +30,6 @@
     filters: {
       padZero: function (value) {
         if (value < 10) return `0${value}`;
-        return value;
-      },
-
-      padDoubleZero: function (value) {
-        if (value > 10 && value < 100) return `${value}0`;
-        if (value < 10) return `${value}00`;
         return value;
       },
     },
@@ -92,10 +88,23 @@
 
 <style lang="scss" scoped>
   .time {
-    font-size: 70px;
+    font-size: 4rem;
+    margin-bottom: 2rem;
   }
 
-  .btn {
-    font-size: 40px;
+  .buttons {
+    .btn {
+      font-size: 2rem;
+      outline: none;
+      background: none;
+      color: #c8c8c8;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+
+      &:hover {
+        color: #fff;
+      }
+    }
   }
 </style>
